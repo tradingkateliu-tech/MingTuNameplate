@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="MingTu Nameplate creates custom metal nameplates, perfume labels, tags, and accessories.">
   <title>MingTu Nameplate Kate | Custom Metal Nameplates</title>
+
+  <!--
+  =====================================================================================
+  【网站管理与修改说明 (中文操作指南) - MingTu Nameplate 铭图标牌】
+  =====================================================================================
+  欢迎使用本网站单页代码！所有 HTML、CSS 和 JavaScript 均已整合在此单一文件中。
+  
+  1. 如何添加或修改产品 (How to Add/Edit Products):
+     -> 请直接向下滚动到代码底部的 <script> 标签区域，找到 `const PRODUCTS_DATA = [ ... ];`。
+     -> 只需要复制其中一个产品对象（大括号 `{ ... }` 内的内容），粘贴到数组末尾，并修改标题、
+        分类、材质、描述或图片链接即可，网页会自动渲染出新产品卡片！
+        
+  2. 如何修改联系方式 (How to Update Contact Info):
+     -> 搜索 `19022443132` 或 `Kate`，即可批量替换为最新的电话、WhatsApp、微信号或地址。
+     
+  3. 如何更改颜色主题 (How to Change Colors):
+     -> 在下方 `:root` 中修改 `--pink` (主粉色) 和 `--ink` (深紫文字色) 的色值即可。
+  =====================================================================================
+  -->
+
   <style>
     :root {
       --ink: #39253b;
@@ -14,352 +34,667 @@
       --rose: #f5dce5;
       --line: rgba(132, 82, 106, .16);
       --white: #fffdfd;
+      --gold: #d6b068;
     }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  color: var(--ink);
-  background: #fffafa;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.65;
-}
-a { color: inherit; text-decoration: none; }
-.container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
 
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: rgba(255, 250, 250, .92);
-  border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(12px);
-}
-.nav {
-  min-height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.brand { display: flex; align-items: center; gap: 10px; font-weight: 750; }
-.brand-mark {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: white;
-  background: linear-gradient(145deg, #a34776, #e4a4bd);
-  font-size: 13px;
-  font-weight: 800;
-}
-.nav-links { display: flex; gap: 24px; color: var(--muted); font-size: 14px; }
-.nav-links a:hover { color: var(--pink-dark); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fffafa;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
 
-.button {
-  min-height: 45px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 19px;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  color: white;
-  background: var(--pink);
-  font-weight: 700;
-  transition: .2s ease;
-}
-.button:hover { background: var(--pink-dark); transform: translateY(-1px); }
-.button.light {
-  color: var(--pink-dark);
-  background: rgba(255,255,255,.72);
-  border-color: rgba(255,255,255,.85);
-}
-.button.light:hover { background: white; }
+    /* 顶部导航栏样式 / Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 250, 250, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(145deg, #a34776, #e4a4bd);
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(163, 71, 118, 0.25);
+    }
+    .nav-links { display: flex; gap: 24px; color: var(--muted); font-size: 14px; font-weight: 600; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: var(--pink-dark); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
 
-/* Soft pink satin-inspired background made with CSS */
-.silk {
-  background-color: #f6dfe8;
-  background-image:
-    radial-gradient(ellipse at 15% 15%, rgba(255,255,255,.95), transparent 34%),
-    radial-gradient(ellipse at 82% 20%, rgba(224,166,191,.42), transparent 32%),
-    radial-gradient(ellipse at 70% 82%, rgba(255,255,255,.72), transparent 31%),
-    linear-gradient(132deg, #fff8fa 2%, #f3d6e1 29%, #fff9fb 48%, #e9bfd0 68%, #fff8fa 86%);
-  background-size: 150% 150%;
-  animation: silk-shift 18s ease-in-out infinite alternate;
-}
-@keyframes silk-shift {
-  from { background-position: 0% 40%; }
-  to { background-position: 100% 60%; }
-}
+    .mobile-menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
 
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 76px 0;
-}
-.hero::before, .hero::after {
-  position: absolute;
-  width: 65%;
-  height: 130px;
-  left: 18%;
-  border-radius: 50%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), rgba(183,107,143,.14), transparent);
-  filter: blur(15px);
-  transform: rotate(-13deg);
-  content: "";
-  pointer-events: none;
-}
-.hero::before { top: 10%; }
-.hero::after { bottom: 8%; transform: rotate(11deg); }
-.hero-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1.05fr .95fr;
-  align-items: center;
-  gap: 42px;
-}
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 14px;
-  color: var(--pink-dark);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-}
-h1 {
-  max-width: 680px;
-  margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(42px, 5.3vw, 66px);
-  line-height: 1.07;
-  letter-spacing: -.04em;
-}
-.hero-copy > p { max-width: 620px; margin: 20px 0 26px; color: #685568; font-size: 17px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .mobile-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      padding: 16px 20px 22px;
+      background: #fffafa;
+      border-bottom: 1px solid var(--line);
+    }
+    .mobile-drawer.open { display: flex; }
+    .mobile-drawer a {
+      padding: 8px 4px;
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 1px dashed var(--line);
+    }
 
-/* Decorative perfume bottle and label, drawn without external images */
-.stage {
-  position: relative;
-  min-height: 430px;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.76);
-  border-radius: 24px;
-  background:
-    radial-gradient(ellipse at 50% 77%, rgba(167,96,128,.16), transparent 46%),
-    linear-gradient(145deg, rgba(255,255,255,.67), rgba(255,239,245,.52));
-  box-shadow: 0 22px 60px rgba(107,54,79,.12);
-}
-.stage::before {
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.64);
-  filter: blur(14px);
-  content: "";
-}
-.bottle {
-  position: relative;
-  z-index: 1;
-  width: 195px;
-  height: 255px;
-  border: 2px solid rgba(255,255,255,.88);
-  border-radius: 38px 38px 27px 27px;
-  background:
-    linear-gradient(100deg, rgba(255,255,255,.35), rgba(255,255,255,.82) 43%, rgba(235,191,207,.45)),
-    linear-gradient(180deg, rgba(255,255,255,.45), rgba(230,179,198,.35));
-  box-shadow:
-    inset 12px 0 18px rgba(255,255,255,.82),
-    inset -12px 0 22px rgba(185,115,148,.12),
-    0 30px 50px rgba(104,57,78,.22);
-  animation: bottle-float 5s ease-in-out infinite;
-}
-.bottle::before {
-  position: absolute;
-  top: -46px;
-  left: 58px;
-  width: 75px;
-  height: 46px;
-  border: 2px solid rgba(255,255,255,.8);
-  border-radius: 10px 10px 3px 3px;
-  background: linear-gradient(90deg, #b98c57, #f3dfb7 45%, #ba915e);
-  box-shadow: 0 7px 12px rgba(107,62,74,.15);
-  content: "";
-}
-.bottle::after {
-  position: absolute;
-  right: 14px;
-  bottom: 0;
-  left: 14px;
-  height: 35%;
-  border-radius: 0 0 18px 18px;
-  background: linear-gradient(180deg, rgba(238,199,165,.12), rgba(223,175,138,.4));
-  content: "";
-}
-.label {
-  position: absolute;
-  z-index: 2;
-  top: 95px;
-  left: 24px;
-  width: 143px;
-  min-height: 77px;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  border: 2px solid #e4c27d;
-  border-radius: 5px;
-  color: #f9e8c2;
-  background: linear-gradient(140deg, #4a2b3c, #7a405a 60%, #392335);
-  box-shadow: 0 8px 16px rgba(67,39,52,.22), inset 0 0 0 3px rgba(241,213,159,.13);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 14px;
-  letter-spacing: .16em;
-  text-align: center;
-  animation: label-apply 5s ease-in-out infinite;
-}
-.label small { display: block; margin-top: 4px; font-family: Arial, sans-serif; font-size: 8px; letter-spacing: .2em; }
-.sparkle { position: absolute; z-index: 2; color: #fff; text-shadow: 0 1px 12px #fff; animation: twinkle 2.6s ease-in-out infinite; }
-.s1 { top: 18%; left: 18%; font-size: 25px; }
-.s2 { top: 25%; right: 19%; font-size: 20px; animation-delay: .8s; }
-.s3 { bottom: 20%; left: 25%; font-size: 19px; animation-delay: 1.5s; }
-.stage-caption {
-  position: absolute;
-  right: 18px;
-  bottom: 15px;
-  left: 18px;
-  z-index: 3;
-  color: #785a6b;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 13px;
-  letter-spacing: .08em;
-  text-align: center;
-}
-@keyframes bottle-float {
-  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-  50% { transform: translateY(-10px) rotate(1.5deg); }
-}
-@keyframes label-apply {
-  0%, 12% { opacity: .55; transform: translateY(-18px) rotate(-7deg) scale(.96); }
-  32%, 75%, 100% { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
-  82% { transform: translateY(1px) scale(1.02); }
-}
-@keyframes twinkle {
-  0%, 100% { opacity: .45; transform: scale(.85); }
-  50% { opacity: 1; transform: scale(1.15); }
-}
+    /* 按钮样式 / Buttons */
+    .button {
+      min-height: 45px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: white;
+      background: var(--pink);
+      font-size: 14px;
+      font-weight: 700;
+      transition: .2s ease;
+      box-shadow: 0 6px 18px rgba(189, 100, 137, 0.22);
+    }
+    .button:hover { background: var(--pink-dark); transform: translateY(-1px); }
+    .button.light {
+      color: var(--pink-dark);
+      background: rgba(255,255,255,.82);
+      border-color: rgba(255,255,255,.95);
+      box-shadow: 0 6px 18px rgba(107, 54, 79, 0.08);
+    }
+    .button.light:hover { background: white; }
+    .button.sm {
+      min-height: 36px;
+      padding: 0 14px;
+      font-size: 13px;
+    }
 
-section { padding: 76px 0; }
-.section-heading { max-width: 760px; margin: 0 auto 36px; text-align: center; }
-.section-heading h2 {
-  margin: 0 0 10px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(30px, 4vw, 43px);
-  line-height: 1.2;
-}
-.section-heading p { margin: 0; color: var(--muted); }
-.about-copy { max-width: 940px; margin: auto; color: #5c4b5e; }
-.about-copy p { margin: 0 0 15px; }
+    /* 丝绸质感渐变背景 / Soft pink satin-inspired background made with CSS */
+    .silk {
+      background-color: #f6dfe8;
+      background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(255,255,255,.95), transparent 34%),
+        radial-gradient(ellipse at 82% 20%, rgba(224,166,191,.42), transparent 32%),
+        radial-gradient(ellipse at 70% 82%, rgba(255,255,255,.72), transparent 31%),
+        linear-gradient(132deg, #fff8fa 2%, #f3d6e1 29%, #fff9fb 48%, #e9bfd0 68%, #fff8fa 86%);
+      background-size: 150% 150%;
+      animation: silk-shift 18s ease-in-out infinite alternate;
+    }
+    @keyframes silk-shift {
+      from { background-position: 0% 40%; }
+      to { background-position: 100% 60%; }
+    }
 
-.soft-bg {
-  background:
-    radial-gradient(ellipse at 12% 0%, rgba(255,255,255,.8), transparent 38%),
-    linear-gradient(145deg, #fff9fb, #f8e8ef 55%, #fff9fb);
-}
-.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.card {
-  padding: 24px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255,255,255,.78);
-  box-shadow: 0 10px 28px rgba(117,71,92,.05);
-}
-.card h3 { margin: 0 0 8px; font-size: 18px; }
-.card p { margin: 0; color: var(--muted); font-size: 14px; }
-.number { margin-bottom: 10px; color: var(--pink-dark); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+    /* 首屏区域 / Hero Section */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 76px 0;
+    }
+    .hero::before, .hero::after {
+      position: absolute;
+      width: 65%;
+      height: 130px;
+      left: 18%;
+      border-radius: 50%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), rgba(183,107,143,.14), transparent);
+      filter: blur(15px);
+      transform: rotate(-13deg);
+      content: "";
+      pointer-events: none;
+    }
+    .hero::before { top: 10%; }
+    .hero::after { bottom: 8%; transform: rotate(11deg); }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 42px;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--pink-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 680px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -.03em;
+    }
+    .hero-copy > p { max-width: 620px; margin: 20px 0 26px; color: #685568; font-size: 17px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-.product-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; max-width: 940px; margin: auto; }
-.product-item {
-  padding: 13px 16px;
-  border: 1px solid var(--line);
-  border-radius: 9px;
-  background: rgba(255,255,255,.8);
-  font-weight: 650;
-}
-.product-item::before { margin-right: 10px; color: var(--pink); content: "✦"; }
+    /* 香水瓶与金属标牌动态展示台 / Decorative perfume bottle and label */
+    .stage {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.76);
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 50% 77%, rgba(167,96,128,.16), transparent 46%),
+        linear-gradient(145deg, rgba(255,255,255,.67), rgba(255,239,245,.52));
+      box-shadow: 0 22px 60px rgba(107,54,79,.12);
+    }
+    .stage::before {
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.64);
+      filter: blur(14px);
+      content: "";
+    }
+    .bottle {
+      position: relative;
+      z-index: 1;
+      width: 195px;
+      height: 255px;
+      border: 2px solid rgba(255,255,255,.88);
+      border-radius: 38px 38px 27px 27px;
+      background:
+        linear-gradient(100deg, rgba(255,255,255,.35), rgba(255,255,255,.82) 43%, rgba(235,191,207,.45)),
+        linear-gradient(180deg, rgba(255,255,255,.45), rgba(230,179,198,.35));
+      box-shadow:
+        inset 12px 0 18px rgba(255,255,255,.82),
+        inset -12px 0 22px rgba(185,115,148,.12),
+        0 30px 50px rgba(104,57,78,.22);
+      animation: bottle-float 5s ease-in-out infinite;
+    }
+    .bottle::before {
+      position: absolute;
+      top: -46px;
+      left: 58px;
+      width: 75px;
+      height: 46px;
+      border: 2px solid rgba(255,255,255,.8);
+      border-radius: 10px 10px 3px 3px;
+      background: linear-gradient(90deg, #b98c57, #f3dfb7 45%, #ba915e);
+      box-shadow: 0 7px 12px rgba(107,62,74,.15);
+      content: "";
+    }
+    .bottle::after {
+      position: absolute;
+      right: 14px;
+      bottom: 0;
+      left: 14px;
+      height: 35%;
+      border-radius: 0 0 18px 18px;
+      background: linear-gradient(180deg, rgba(238,199,165,.12), rgba(223,175,138,.4));
+      content: "";
+    }
+    .label {
+      position: absolute;
+      z-index: 2;
+      top: 95px;
+      left: 24px;
+      width: 143px;
+      min-height: 77px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      border: 2px solid #e4c27d;
+      border-radius: 5px;
+      color: #f9e8c2;
+      background: linear-gradient(140deg, #4a2b3c, #7a405a 60%, #392335);
+      box-shadow: 0 8px 16px rgba(67,39,52,.22), inset 0 0 0 3px rgba(241,213,159,.13);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      letter-spacing: .16em;
+      text-align: center;
+      animation: label-apply 5s ease-in-out infinite;
+      transition: all 0.3s ease;
+    }
+    .label small { display: block; margin-top: 4px; font-family: Arial, sans-serif; font-size: 8px; letter-spacing: .2em; }
+    .sparkle { position: absolute; z-index: 2; color: #fff; text-shadow: 0 1px 12px #fff; animation: twinkle 2.6s ease-in-out infinite; }
+    .s1 { top: 18%; left: 18%; font-size: 25px; }
+    .s2 { top: 25%; right: 19%; font-size: 20px; animation-delay: .8s; }
+    .s3 { bottom: 20%; left: 25%; font-size: 19px; animation-delay: 1.5s; }
+    .stage-caption {
+      position: absolute;
+      right: 18px;
+      bottom: 15px;
+      left: 18px;
+      z-index: 3;
+      color: #785a6b;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-align: center;
+    }
+    @keyframes bottle-float {
+      0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+    @keyframes label-apply {
+      0%, 12% { opacity: .55; transform: translateY(-18px) rotate(-7deg) scale(.96); }
+      32%, 75%, 100% { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+      82% { transform: translateY(1px) scale(1.02); }
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: .45; transform: scale(.85); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
 
-.materials { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
-.materials span {
-  padding: 8px 16px;
-  border: 1px solid rgba(189,100,137,.25);
-  border-radius: 999px;
-  color: var(--pink-dark);
-  background: rgba(255,255,255,.78);
-  font-size: 14px;
-  font-weight: 700;
-}
+    /* 通用区块样式 / Sections */
+    section { padding: 76px 0; }
+    .section-heading { max-width: 760px; margin: 0 auto 36px; text-align: center; }
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 43px);
+      line-height: 1.2;
+    }
+    .section-heading p { margin: 0; color: var(--muted); }
+    .about-copy { max-width: 940px; margin: auto; color: #5c4b5e; }
+    .about-copy p { margin: 0 0 15px; }
 
-.contact {
-  color: #fff9fc;
-  background:
-    radial-gradient(ellipse at 80% 15%, rgba(255,255,255,.22), transparent 34%),
-    linear-gradient(130deg, #6d405f, #a8587b 58%, #c87d9b);
-}
-.contact .section-heading p { color: #f6e5ed; }
-.contact .eyebrow { color: #ffe7f0; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.contact-card { padding: 21px; border: 1px solid rgba(255,255,255,.23); border-radius: 12px; background: rgba(255,255,255,.1); }
-.contact-card h3 { margin: 0 0 6px; color: #ffe7f0; font-size: 14px; }
-.contact-card p { margin: 0; overflow-wrap: anywhere; }
-.contact-card a { text-decoration: underline; text-underline-offset: 3px; }
+    /* 核心数据指标 / Stats Bar */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+    .stat-box {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.85);
+      text-align: center;
+    }
+    .stat-box strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 26px;
+      color: var(--pink-dark);
+      margin-bottom: 4px;
+    }
+    .stat-box span { font-size: 13px; color: var(--muted); font-weight: 600; }
 
-footer { padding: 22px 0; color: var(--muted); background: #fffafa; font-size: 13px; }
-.footer-row { display: flex; justify-content: space-between; gap: 16px; }
+    .soft-bg {
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(255,255,255,.8), transparent 38%),
+        linear-gradient(145deg, #fff9fb, #f8e8ef 55%, #fff9fb);
+    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.84);
+      box-shadow: 0 10px 28px rgba(117,71,92,.05);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(117,71,92,.09); }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .number { margin-bottom: 10px; color: var(--pink-dark); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-  }
-}
-@media (max-width: 800px) {
-  .nav-links { display: none; }
-  .hero-grid { grid-template-columns: 1fr; }
-  .stage { min-height: 380px; }
-  .grid-3 { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) {
-  .container { width: min(100% - 28px, 1160px); }
-  .hero { padding: 58px 0; }
-  .stage { min-height: 340px; }
-  .grid-3, .product-list, .contact-grid { grid-template-columns: 1fr; }
-  .footer-row { flex-direction: column; }
-  section { padding: 60px 0; }
-}
+    /* 交互式材质选择标签 / Interactive Material Chips */
+    .materials { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+    .material-chip {
+      padding: 10px 18px;
+      border: 1px solid rgba(189,100,137,.28);
+      border-radius: 999px;
+      color: var(--pink-dark);
+      background: rgba(255,255,255,.85);
+      font-size: 14px;
+      font-weight: 700;
+      transition: all .2s ease;
+    }
+    .material-chip:hover, .material-chip.active {
+      background: var(--pink);
+      color: white;
+      border-color: var(--pink);
+      box-shadow: 0 6px 16px rgba(189, 100, 137, 0.25);
+    }
+    .material-detail-box {
+      max-width: 680px;
+      margin: 22px auto 0;
+      padding: 18px 22px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.9);
+      text-align: center;
+      font-size: 14px;
+      color: var(--ink);
+    }
 
+    /* 产品筛选器与产品卡片网格 / Dynamic Product Catalog */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .2s ease;
+    }
+    .filter-btn:hover { border-color: var(--pink); color: var(--pink-dark); }
+    .filter-btn.active { background: var(--pink); color: white; border-color: var(--pink); }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: white;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(117, 71, 92, 0.05);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(117, 71, 92, 0.11);
+    }
+    .product-visual {
+      position: relative;
+      height: 185px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #fdf2f6, #f4dce6);
+      overflow: hidden;
+    }
+    .product-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--pink-dark);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
+    /* 默认精致金属铭牌预览徽章（未设置真实图片时自动显示） */
+    .metal-plaque-preview {
+      width: 150px;
+      height: 82px;
+      border-radius: 10px;
+      border: 2px solid #e4c27d;
+      background: linear-gradient(140deg, #4a2b3c, #7a405a 60%, #392335);
+      color: #f9e8c2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 8px;
+      font-family: Georgia, serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      box-shadow: 0 10px 22px rgba(67, 39, 52, 0.22);
+    }
+    .product-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .product-meta {
+      font-size: 12px;
+      color: var(--pink-dark);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .product-body h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: var(--ink);
+    }
+    .product-body p {
+      margin: 0 0 16px;
+      font-size: 13.5px;
+      color: var(--muted);
+      flex: 1;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+    .moq-tag { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+    /* 联系我们区域 / Contact Section */
+    .contact {
+      color: #fff9fc;
+      background:
+        radial-gradient(ellipse at 80% 15%, rgba(255,255,255,.22), transparent 34%),
+        linear-gradient(130deg, #6d405f, #a8587b 58%, #c87d9b);
+    }
+    .contact .section-heading p { color: #f6e5ed; }
+    .contact .eyebrow { color: #ffe7f0; }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .contact-card {
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 16px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(6px);
+    }
+    .contact-card.full { grid-column: 1 / -1; }
+    .contact-card h3 { margin: 0 0 6px; color: #ffe7f0; font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
+    .contact-card p { margin: 0; overflow-wrap: anywhere; font-size: 15px; font-weight: 600; }
+    .contact-card a { text-decoration: underline; text-underline-offset: 3px; }
+    .copy-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.45);
+      background: rgba(255,255,255,0.16);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      transition: background .2s ease;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.3); }
+
+    /* 在线快速询盘表单 / Quick Inquiry Form */
+    .quote-box {
+      padding: 26px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      box-shadow: 0 20px 44px rgba(57, 37, 59, 0.22);
+    }
+    .quote-box h3 {
+      margin: 0 0 6px;
+      font-family: Georgia, serif;
+      font-size: 22px;
+    }
+    .quote-box > p {
+      margin: 0 0 18px;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 12px; font-weight: 700; color: var(--ink); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(132, 82, 106, 0.25);
+      background: #fffafa;
+      color: var(--ink);
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s ease;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--pink);
+    }
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    /* 提示框 / Toast Notification (代替 alert) */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      padding: 14px 20px;
+      border-radius: 14px;
+      background: #39253b;
+      color: #fff9fc;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: 0 14px 32px rgba(57, 37, 59, 0.28);
+      transform: translateY(120%);
+      opacity: 0;
+      transition: all .3s ease;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    footer { padding: 24px 0; color: var(--muted); background: #fffafa; font-size: 13px; border-top: 1px solid var(--line); }
+    .footer-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-layout { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 800px) {
+      .nav-links, .desktop-cta { display: none; }
+      .mobile-menu-btn { display: inline-flex; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .stage { min-height: 360px; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 28px, 1160px); }
+      .hero { padding: 54px 0; }
+      .stage { min-height: 330px; }
+      .grid-3, .products-grid, .contact-grid, .form-grid { grid-template-columns: 1fr; }
+      .footer-row { flex-direction: column; text-align: center; }
+      section { padding: 58px 0; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- ================= 顶部导航栏 (Header) ================= -->
   <header>
     <div class="container nav">
-      <a class="brand" href="#home"><span class="brand-mark">MT</span><span>MingTu Nameplate</span></a>
+      <a class="brand" href="#home">
+        <span class="brand-mark">MT</span>
+        <span>MingTu Nameplate</span>
+      </a>
       <nav class="nav-links" aria-label="Main navigation">
         <a href="#about">About</a>
         <a href="#materials">Materials</a>
         <a href="#products">Products</a>
+        <a href="#advantages">Advantages</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="button" href="#contact">Contact Us</a>
+      <div class="nav-actions">
+        <a class="button desktop-cta" href="#contact">Request Quote</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">☰</button>
+      </div>
+    </div>
+    <!-- 移动端折叠菜单 / Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#about" class="drawer-link">About Company</a>
+      <a href="#materials" class="drawer-link">Metal Materials</a>
+      <a href="#products" class="drawer-link">Product Catalog</a>
+      <a href="#advantages" class="drawer-link">Our Advantages</a>
+      <a href="#contact" class="drawer-link">Contact Kate</a>
     </div>
   </header>
+
   <main>
+    <!-- ================= 首屏展示区 (Hero Section) ================= -->
     <section class="hero silk" id="home">
       <div class="container hero-grid">
         <div class="hero-copy">
@@ -375,148 +710,520 @@ footer { padding: 22px 0; color: var(--muted); background: #fffafa; font-size: 1
             <a class="button light" href="#products">Explore Products</a>
           </div>
         </div>
-    <div class="stage" role="img" aria-label="Decorative animation of a metal perfume label settling onto a glass bottle">
-      <span class="sparkle s1">✦</span>
-      <span class="sparkle s2">✧</span>
-      <span class="sparkle s3">✦</span>
-      <div class="bottle">
-        <div class="label">MINGTU<small>METAL NAMEPLATE</small></div>
+
+        <!-- 动态香水瓶与金属铭牌展示舞台 -->
+        <div class="stage" role="img" aria-label="Decorative animation of a metal perfume label settling onto a glass bottle">
+          <span class="sparkle s1">✦</span>
+          <span class="sparkle s2">✧</span>
+          <span class="sparkle s3">✦</span>
+          <div class="bottle">
+            <div class="label" id="previewLabel">MINGTU<small id="previewMaterial">METAL NAMEPLATE</small></div>
+          </div>
+          <div class="stage-caption">A custom metal label, made for your product</div>
+        </div>
       </div>
-      <div class="stage-caption">A custom metal label, made for your product</div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="about">
-  <div class="container">
-    <div class="section-heading">
-      <div class="eyebrow">Company Profile</div>
-      <h2>Your Custom Metal Nameplate Partner</h2>
-    </div>
-    <div class="about-copy">
-      <p>
-        MingTu Nameplate (Foshan) Technology Co., Ltd. is a professional
-        manufacturer specializing in the research, production, and
-        customization of metal nameplates. With years of industry
-        experience, our company is located in Hegui Industrial Park,
-        Heshun, Lishui Town, Nanhai District, Foshan City, Guangdong, China.
-      </p>
-      <p>
-        We operate standardized production workshops and a complete
-        production line, with equipment including a 110-ton stamping press,
-        automatic punching machines, a tunnel oven, printing presses, a UV
-        curing machine, and precision screen-printing equipment. We provide
-        multi-process manufacturing using aluminum, zinc alloy, stainless
-        steel, nickel, and other metal materials.
-      </p>
-      <p>
-        Our products serve fragrance and cosmetics, electronic devices and
-        accessories, cultural and creative gifts, and other industries. We
-        work with customers to develop custom metal label solutions for
-        their products and brands.
-      </p>
-    </div>
-  </div>
-</section>
+    <!-- ================= 公司简介 (About Section) ================= -->
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Company Profile</div>
+          <h2>Your Custom Metal Nameplate Partner</h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            MingTu Nameplate (Foshan) Technology Co., Ltd. is a professional
+            manufacturer specializing in the research, production, and
+            customization of metal nameplates. With years of industry
+            experience, our company is located in Hegui Industrial Park,
+            Heshun, Lishui Town, Nanhai District, Foshan City, Guangdong, China.
+          </p>
+          <p>
+            We operate standardized production workshops and a complete
+            production line, with equipment including a 110-ton stamping press,
+            automatic punching machines, a tunnel oven, printing presses, a UV
+            curing machine, and precision screen-printing equipment. We provide
+            multi-process manufacturing using aluminum, zinc alloy, stainless
+            steel, nickel, and other metal materials.
+          </p>
+          <p>
+            Our products serve fragrance and cosmetics, electronic devices and
+            accessories, cultural and creative gifts, and other industries. We
+            work with customers to develop custom metal label solutions for
+            their products and brands.
+          </p>
+        </div>
 
-<section class="soft-bg" id="materials">
-  <div class="container">
-    <div class="section-heading">
-      <div class="eyebrow">Materials</div>
-      <h2>Choose the Metal for Your Design</h2>
-      <p>We offer custom production using a range of metal materials.</p>
-      <div class="materials">
-        <span>Aluminum</span>
-        <span>Zinc Alloy</span>
-        <span>Stainless Steel</span>
-        <span>Nickel</span>
-        <span>Other Metals</span>
+        <!-- 工厂实力数据卡片 -->
+        <div class="stats-row">
+          <div class="stat-box">
+            <strong>110-Ton</strong>
+            <span>Stamping Press Line</span>
+          </div>
+          <div class="stat-box">
+            <strong>5+ Metals</strong>
+            <span>Aluminum, Brass, Steel &amp; More</span>
+          </div>
+          <div class="stat-box">
+            <strong>6+ Tests</strong>
+            <span>Fragrance &amp; Alcohol Resistance</span>
+          </div>
+          <div class="stat-box">
+            <strong>OEM / ODM</strong>
+            <span>Custom Shape, Color &amp; Adhesive</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="products">
-  <div class="container">
-    <div class="section-heading">
-      <div class="eyebrow">Core Products</div>
-      <h2>Custom Labels, Nameplates &amp; Accessories</h2>
-      <p>Custom-made for your product, packaging, or brand.</p>
-    </div>
-    <div class="product-list">
-      <div class="product-item">Metal labels and nameplates</div>
-      <div class="product-item">Perfume bottle labels</div>
-      <div class="product-item">Perfume box emblems</div>
-      <div class="product-item">Printed embossed and debossed labels</div>
-      <div class="product-item">Zinc alloy hang tags</div>
-      <div class="product-item">Metal badges and fridge magnets</div>
-      <div class="product-item">Stainless steel and brass etched labels</div>
-      <div class="product-item">Nickel labels and laser labels</div>
-      <div class="product-item">Metal labels for electronics</div>
-      <div class="product-item">Custom metal gifts and accessories</div>
-    </div>
-  </div>
-</section>
-
-<section class="soft-bg" id="advantages">
-  <div class="container">
-    <div class="section-heading">
-      <div class="eyebrow">Our Advantages</div>
-      <h2>Thoughtful Customization, Careful Production</h2>
-      <p>
-        Product testing options described in the company profile include
-        fragrance compatibility, alcohol resistance, temperature cycling,
-        cross-hatch adhesion, peel strength, and abrasion resistance tests.
-      </p>
-    </div>
-    <div class="grid-3">
-      <article class="card">
-        <div class="number">01</div>
-        <h3>Made to Your Requirements</h3>
-        <p>Choose a metal material and share your design and product requirements.</p>
-      </article>
-      <article class="card">
-        <div class="number">02</div>
-        <h3>Multiple Production Processes</h3>
-        <p>Production equipment and processes support custom nameplate manufacturing.</p>
-      </article>
-      <article class="card">
-        <div class="number">03</div>
-        <h3>Product Testing Options</h3>
-        <p>Testing options include adhesion, peel strength, and abrasion resistance.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="section-heading">
-      <div class="eyebrow">Contact Us</div>
-      <h2>Let’s Create Something Made for You</h2>
-      <p>Contact Kate to discuss your materials, design, and customization requirements.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-card"><h3>Contact Person</h3><p>Kate</p></div>
-      <div class="contact-card"><h3>WhatsApp</h3><p><a href="https://wa.me/8619022443132">+86 19022443132</a></p></div>
-      <div class="contact-card"><h3>WeChat</h3><p>19022443132</p></div>
-      <div class="contact-card">
-        <h3>Address</h3>
-        <p>Building 3, No. 8 Hegui Middle Road, Hegui Industrial Park, Heshun, Lishui Town, Nanhai District, Foshan City, Guangdong, China</p>
+    <!-- ================= 金属材质选择 (Interactive Materials Section) ================= -->
+    <section class="soft-bg" id="materials">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Materials</div>
+          <h2>Choose the Metal for Your Design</h2>
+          <p>Click any metal below to preview its characteristics and update the bottle label.</p>
+          <div class="materials" id="materialChips">
+            <button type="button" class="material-chip active" data-material="Aluminum">Aluminum</button>
+            <button type="button" class="material-chip" data-material="Zinc Alloy">Zinc Alloy</button>
+            <button type="button" class="material-chip" data-material="Stainless Steel">Stainless Steel</button>
+            <button type="button" class="material-chip" data-material="Nickel">Nickel</button>
+            <button type="button" class="material-chip" data-material="Brass & Other Metals">Brass &amp; Other Metals</button>
+          </div>
+          <div class="material-detail-box" id="materialDetailBox">
+            <strong>Aluminum:</strong> Lightweight, flexible for curved perfume bottles, supports anodized colors, diamond-cut edges, and crisp embossing.
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <!-- ================= 核心产品目录 (Dynamic Products Catalog) ================= -->
+    <section id="products">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Core Products</div>
+          <h2>Custom Labels, Nameplates &amp; Accessories</h2>
+          <p>Filter by category or click "Inquire This Item" to pre-fill your quote request.</p>
+        </div>
+
+        <!-- 分类筛选按钮栏 (由 JS 自动生成) -->
+        <div class="filter-bar" id="productFilterBar"></div>
+
+        <!-- 产品卡片容器 (由 JS 自动从 PRODUCTS_DATA 数组渲染) -->
+        <div class="products-grid" id="productsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ================= 我们的优势与品控 (Advantages Section) ================= -->
+    <section class="soft-bg" id="advantages">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Our Advantages</div>
+          <h2>Thoughtful Customization, Careful Production</h2>
+          <p>
+            Product testing options described in the company profile include
+            fragrance compatibility, alcohol resistance, temperature cycling,
+            cross-hatch adhesion, peel strength, and abrasion resistance tests.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card">
+            <div class="number">01</div>
+            <h3>Made to Your Requirements</h3>
+            <p>Choose a metal material, thickness, finish (brushed, mirror, matte), and backing adhesive tailored to your packaging.</p>
+          </article>
+          <article class="card">
+            <div class="number">02</div>
+            <h3>Multiple Production Processes</h3>
+            <p>110-ton stamping, die-casting, chemical etching, electroforming, UV printing, and precision screen-printing under one roof.</p>
+          </article>
+          <article class="card">
+            <div class="number">03</div>
+            <h3>Strict Lab &amp; Quality Testing</h3>
+            <p>Every batch can be tested for fragrance/alcohol resistance, high-low temperature cycling, cross-hatch adhesion, and abrasion.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 联系我们与在线询盘 (Contact & Quote Section) ================= -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Contact Us</div>
+          <h2>Let’s Create Something Made for You</h2>
+          <p>Contact Kate directly via WhatsApp, WeChat, or send your custom specifications below.</p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- 左侧：联系方式卡片 -->
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h3>Contact Person</h3>
+              <p>Kate (Sales Manager)</p>
+            </div>
+            <div class="contact-card">
+              <h3>WhatsApp</h3>
+              <p><a href="https://wa.me/8619022443132" target="_blank" rel="noopener">+86 19022443132</a></p>
+              <button type="button" class="copy-btn" data-copy="+86 19022443132">Copy Number</button>
+            </div>
+            <div class="contact-card">
+              <h3>WeChat (微信)</h3>
+              <p>19022443132</p>
+              <button type="button" class="copy-btn" data-copy="19022443132">Copy WeChat ID</button>
+            </div>
+            <div class="contact-card">
+              <h3>Factory Location</h3>
+              <p>Nanhai, Foshan, Guangdong</p>
+            </div>
+            <div class="contact-card full">
+              <h3>Full Factory Address</h3>
+              <p>Building 3, No. 8 Hegui Middle Road, Hegui Industrial Park, Heshun, Lishui Town, Nanhai District, Foshan City, Guangdong, China</p>
+            </div>
+          </div>
+
+          <!-- 右侧：在线快速询盘表单 (自动生成 WhatsApp 消息或复制询盘内容) -->
+          <div class="quote-box">
+            <h3>Quick Custom Quote</h3>
+            <p>Fill in your project details and send directly to Kate on WhatsApp or copy to WeChat.</p>
+            <form id="quoteForm">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="custName">Your Name / Brand *</label>
+                  <input type="text" id="custName" placeholder="e.g., Sarah / Lumière Parfums" required>
+                </div>
+                <div class="form-group">
+                  <label for="custContact">Email or WhatsApp *</label>
+                  <input type="text" id="custContact" placeholder="e.g., +1 555-0192" required>
+                </div>
+                <div class="form-group">
+                  <label for="prodSelect">Product Type</label>
+                  <select id="prodSelect"></select>
+                </div>
+                <div class="form-group">
+                  <label for="matSelect">Preferred Material</label>
+                  <select id="matSelect">
+                    <option value="Aluminum">Aluminum (铝标牌)</option>
+                    <option value="Zinc Alloy">Zinc Alloy (锌合金)</option>
+                    <option value="Stainless Steel">Stainless Steel (不锈钢)</option>
+                    <option value="Nickel">Nickel Electroformed (镍标/电铸标)</option>
+                    <option value="Brass / Other">Brass / Not Sure Yet</option>
+                  </select>
+                </div>
+                <div class="form-group full">
+                  <label for="custNotes">Size, Quantity &amp; Design Notes</label>
+                  <textarea id="custNotes" rows="3" placeholder="e.g., 45x25mm curved gold perfume label, 3M adhesive, 2,000 pcs..."></textarea>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="button">Send via WhatsApp</button>
+                <button type="button" class="button light" id="copyInquiryBtn">Copy for WeChat</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <!-- ================= 页脚 (Footer) ================= -->
   <footer>
     <div class="container footer-row">
       <span>© <span id="year"></span> MingTu Nameplate (Foshan) Technology Co., Ltd.</span>
-      <span>Custom Metal Nameplates &amp; Labels</span>
+      <span>Custom Metal Nameplates &amp; Labels • Contact: Kate (+86 19022443132)</span>
     </div>
   </footer>
+
+  <!-- 底部浮动提示消息 -->
+  <div class="toast" id="toast">Copied to clipboard!</div>
+
+  <!-- ==================================================================================
+       【核心 JavaScript 脚本与中文产品添加指南】
+       ================================================================================== -->
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    /* =================================================================================
+       ★ 第一部分：产品数据库 (PRODUCTS_DATA) —— 【在这里添加或修改新产品！】
+       =================================================================================
+       【中文操作指南：如何添加新产品？】
+       1. 复制下方任意一个 `{ ... },` 代码块（注意保留末尾的英文逗号 `,`）。
+       2. 粘贴到 `PRODUCTS_DATA` 数组的最后一行（`];` 的前面）。
+       3. 修改以下 6 个字段的内容：
+          - title:    产品英文名称（显示在卡片主标题）
+          - category: 产品分类（用于顶部筛选按钮，例如 "Perfume & Cosmetics"、"Tags & Badges"、"Industrial & Gifts"）
+          - material: 推荐材质说明
+          - badge:    卡片左上角小标签（例如 "Best Seller"、"Custom Mold"、"3M Adhesive"）
+          - desc:     产品简介描述
+          - image:    产品图片链接！
+                      * 如果暂时没有图片，请保持 `image: ""`，系统会自动生成精美的金属铭牌预览图！
+                      * 如果有产品图片，可以把图片放在网页同一文件夹下（例如 `"images/perfume-label.jpg"`）
+                        或者填入网络图片网址（例如 `"https://你的网址.com/photo.jpg"`）。
+       ================================================================================= */
+    const PRODUCTS_DATA = [
+      {
+        title: "Perfume Bottle Metal Labels",
+        category: "Perfume & Cosmetics",
+        material: "Aluminum / Brass",
+        badge: "Best Seller",
+        desc: "Curved or flat custom metal plaques with strong fragrance-resistant 3M adhesive, ideal for luxury glass perfume bottles.",
+        image: "" // 如需放图，请在此引号内填写图片路径，如 "product1.jpg"
+      },
+      {
+        title: "Perfume Box Metal Emblems",
+        category: "Perfume & Cosmetics",
+        material: "Zinc Alloy / Aluminum",
+        badge: "Luxury Finish",
+        desc: "Heavy-feel embossed or debossed metal crests designed for rigid gift boxes, cosmetic cases, and rigid packaging.",
+        image: ""
+      },
+      {
+        title: "Printed Embossed & Debossed Labels",
+        category: "Perfume & Cosmetics",
+        material: "Aluminum / Stainless Steel",
+        badge: "3D Relief",
+        desc: "High-precision 110-ton stamped 3D raised lettering paired with UV curing inks and brushed or mirror finishes.",
+        image: ""
+      },
+      {
+        title: "Zinc Alloy Hang Tags",
+        category: "Tags & Badges",
+        material: "Die-Cast Zinc Alloy",
+        badge: "Custom Mold",
+        desc: "Durable electroplated metal hang tags in gold, rose gold, gunmetal, or antique bronze for bags, apparel, and bottles.",
+        image: ""
+      },
+      {
+        title: "Metal Badges & Fridge Magnets",
+        category: "Tags & Badges",
+        material: "Zinc Alloy / Iron / Brass",
+        badge: "Enamel & Plating",
+        desc: "Custom-shaped lapel pins, brand emblems, and decorative souvenir fridge magnets with soft or hard enamel colors.",
+        image: ""
+      },
+      {
+        title: "Stainless Steel & Brass Etched Labels",
+        category: "Industrial & Gifts",
+        material: "304 Stainless Steel / Brass",
+        badge: "Weatherproof",
+        desc: "Chemical-etched recessed logos filled with baked paint for high durability, outdoor resistance, and classic elegance.",
+        image: ""
+      },
+      {
+        title: "Nickel Electroformed & Laser Labels",
+        category: "Industrial & Gifts",
+        material: "Pure Nickel",
+        badge: "Ultra-Thin",
+        desc: "Ultra-thin, self-adhesive metallic transfer stickers with razor-sharp edges and mirror chrome or gold shine.",
+        image: ""
+      },
+      {
+        title: "Metal Labels for Electronics",
+        category: "Industrial & Gifts",
+        material: "Aluminum / Stainless Steel",
+        badge: "Precision Cut",
+        desc: "Diamond-cut aluminum logos and serial plates engineered for audio equipment, smart devices, and appliances.",
+        image: ""
+      },
+      {
+        title: "Custom Metal Gifts & Accessories",
+        category: "Industrial & Gifts",
+        material: "Multi-Metal Options",
+        badge: "OEM / ODM",
+        desc: "Bespoke bookmarks, keychains, bottle openers, and promotional metal accessories crafted to your artwork.",
+        image: ""
+      }
+      /* 👇 提示：如需新增第 10 个产品，请在此处粘贴新的 `{ title: "...", category: "...", ... },` */
+    ];
+
+    /* =================================================================================
+       ★ 第二部分：材质说明数据库 (MATERIALS_INFO) —— 【修改材质介绍请看这里】
+       ================================================================================= */
+    const MATERIALS_INFO = {
+      "Aluminum": "Lightweight, flexible for curved perfume bottles, supports anodized colors, diamond-cut edges, and crisp embossing.",
+      "Zinc Alloy": "Ideal for 3D die-cast emblems, thick luxury plaques, hang tags, and custom electroplated finishes (gold, rose gold, antique).",
+      "Stainless Steel": "Superior corrosion and scratch resistance; perfect for etched plates, brushed metallic textures, and electronics.",
+      "Nickel": "Ultra-thin electroformed metal transfer labels with razor-sharp detail and mirror-like brilliance without bulky edges.",
+      "Brass & Other Metals": "Rich, classic weight and warm golden tone suited for vintage etched plaques, luxury spirits, and bespoke gifts."
+    };
+
+    /* =================================================================================
+       ★ 第三部分：页面交互功能逻辑 (无需修改，自动运行)
+       ================================================================================= */
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. 自动更新页脚年份
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // 2. 顶部提示框工具函数 (代替浏览器弹窗)
+      const toastEl = document.getElementById("toast");
+      let toastTimer = null;
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2800);
+      }
+
+      // 3. 移动端菜单开关
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileDrawer = document.getElementById("mobileDrawer");
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileDrawer.classList.toggle("open");
+      });
+      document.querySelectorAll(".drawer-link").forEach(link => {
+        link.addEventListener("click", () => mobileDrawer.classList.remove("open"));
+      });
+
+      // 4. 材质选择交互（点击材质标签，更新说明文字及香水瓶上的金属铭牌预览）
+      const materialChips = document.querySelectorAll(".material-chip");
+      const materialDetailBox = document.getElementById("materialDetailBox");
+      const previewMaterial = document.getElementById("previewMaterial");
+
+      materialChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          materialChips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+
+          const mat = chip.dataset.material;
+          materialDetailBox.innerHTML = `<strong>${mat}:</strong> ${MATERIALS_INFO[mat] || ""}`;
+          previewMaterial.textContent = mat.toUpperCase();
+        });
+      });
+
+      // 5. 动态渲染产品分类按钮与产品卡片
+      const filterBar = document.getElementById("productFilterBar");
+      const productsGrid = document.getElementById("productsGrid");
+      const prodSelect = document.getElementById("prodSelect");
+
+      // 提取所有不重复的分类
+      const categories = ["All Products", ...new Set(PRODUCTS_DATA.map(p => p.category))];
+      let activeCategory = "All Products";
+
+      // 填充询盘表单中的产品下拉选项
+      PRODUCTS_DATA.forEach(item => {
+        const opt = document.createElement("option");
+        opt.value = item.title;
+        opt.textContent = item.title;
+        prodSelect.appendChild(opt);
+      });
+      const customOpt = document.createElement("option");
+      customOpt.value = "Other Custom Metal Design";
+      customOpt.textContent = "Other Custom Metal Design";
+      prodSelect.appendChild(customOpt);
+
+      // 渲染分类筛选按钮
+      function renderFilters() {
+        filterBar.innerHTML = "";
+        categories.forEach(cat => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `filter-btn ${cat === activeCategory ? "active" : ""}`;
+          btn.textContent = cat;
+          btn.addEventListener("click", () => {
+            activeCategory = cat;
+            renderFilters();
+            renderProducts();
+          });
+          filterBar.appendChild(btn);
+        });
+      }
+
+      // 渲染产品网格卡片
+      function renderProducts() {
+        productsGrid.innerHTML = "";
+        const filtered = activeCategory === "All Products"
+          ? PRODUCTS_DATA
+          : PRODUCTS_DATA.filter(p => p.category === activeCategory);
+
+        filtered.forEach(product => {
+          const card = document.createElement("article");
+          card.className = "product-card";
+
+          // 如果填写了真实图片链接则显示图片，否则显示精致的金属铭牌模拟徽章
+          const visualHTML = product.image && product.image.trim() !== ""
+            ? `<img src="${product.image}" alt="${product.title}" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+               <div class="metal-plaque-preview" style="display:none;">MINGTU<br><span style="font-size:9px;font-family:Arial;">${product.material}</span></div>`
+            : `<div class="metal-plaque-preview">MINGTU<br><span style="font-size:9px;font-family:Arial;letter-spacing:.14em;margin-top:4px;">${product.material.toUpperCase()}</span></div>`;
+
+          card.innerHTML = `
+            <div class="product-visual">
+              <span class="product-badge">${product.badge}</span>
+              ${visualHTML}
+            </div>
+            <div class="product-body">
+              <div class="product-meta">${product.category} • ${product.material}</div>
+              <h3>${product.title}</h3>
+              <p>${product.desc}</p>
+              <div class="product-footer">
+                <span class="moq-tag">Custom Size &amp; Logo</span>
+                <button type="button" class="button sm inquire-item-btn" data-title="${product.title}">Inquire Now</button>
+              </div>
+            </div>
+          `;
+          productsGrid.appendChild(card);
+        });
+
+        // 绑定每个产品卡片的“Inquire Now”按钮：自动选中该产品并平滑滚动到联系表单
+        document.querySelectorAll(".inquire-item-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const title = btn.dataset.title;
+            prodSelect.value = title;
+            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+            showToast(`Selected "${title}" for your quote!`);
+          });
+        });
+      }
+
+      renderFilters();
+      renderProducts();
+
+      // 6. 一键复制 WhatsApp / 微信号功能 (兼容 iFrame 环境)
+      function copyTextToClipboard(text, successMsg) {
+        const tempInput = document.createElement("textarea");
+        tempInput.value = text;
+        tempInput.style.position = "fixed";
+        tempInput.style.opacity = "0";
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand("copy");
+          showToast(successMsg);
+        } catch (err) {
+          showToast("Copy failed, please copy manually: " + text);
+        }
+        document.body.removeChild(tempInput);
+      }
+
+      document.querySelectorAll(".copy-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const val = btn.dataset.copy;
+          copyTextToClipboard(val, `Copied "${val}" to clipboard!`);
+        });
+      });
+
+      // 7. 询盘表单提交 (支持直接跳转 WhatsApp 或一键复制给微信 Kate)
+      function buildInquiryMessage() {
+        const name = document.getElementById("custName").value.trim() || "Customer";
+        const contact = document.getElementById("custContact").value.trim() || "Not provided";
+        const prod = prodSelect.value;
+        const mat = document.getElementById("matSelect").value;
+        const notes = document.getElementById("custNotes").value.trim() || "Please send catalog and pricing.";
+
+        return `Hello Kate (MingTu Nameplate),\nI would like a custom quote:\n• Name/Brand: ${name}\n• Contact: ${contact}\n• Product: ${prod}\n• Material: ${mat}\n• Details: ${notes}`;
+      }
+
+      document.getElementById("quoteForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const message = encodeURIComponent(buildInquiryMessage());
+        const waUrl = `https://wa.me/8619022443132?text=${message}`;
+        window.open(waUrl, "_blank", "noopener");
+        showToast("Opening WhatsApp to chat with Kate...");
+      });
+
+      document.getElementById("copyInquiryBtn").addEventListener("click", () => {
+        const message = buildInquiryMessage();
+        copyTextToClipboard(message, "Inquiry copied! Paste it in WeChat for Kate (19022443132).");
+      });
+    });
   </script>
 </body>
 </html>
