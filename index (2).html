@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MingTu Nameplate creates custom metal nameplates, perfume labels, tags, and accessories.">
+  <title>MingTu Nameplate Kate | Custom Metal Nameplates</title>
+  <style>
+    :root {
+      --ink: #39253b;
+      --muted: #786879;
+      --pink: #bd6489;
+      --pink-dark: #9f486f;
+      --rose: #f5dce5;
+      --line: rgba(132, 82, 106, .16);
+      --white: #fffdfd;
+    }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fffafa;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+.container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 250, 250, .92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+.nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 750; }
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: white;
+  background: linear-gradient(145deg, #a34776, #e4a4bd);
+  font-size: 13px;
+  font-weight: 800;
+}
+.nav-links { display: flex; gap: 24px; color: var(--muted); font-size: 14px; }
+.nav-links a:hover { color: var(--pink-dark); }
+
+.button {
+  min-height: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 19px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: white;
+  background: var(--pink);
+  font-weight: 700;
+  transition: .2s ease;
+}
+.button:hover { background: var(--pink-dark); transform: translateY(-1px); }
+.button.light {
+  color: var(--pink-dark);
+  background: rgba(255,255,255,.72);
+  border-color: rgba(255,255,255,.85);
+}
+.button.light:hover { background: white; }
+
+/* Soft pink satin-inspired background made with CSS */
+.silk {
+  background-color: #f6dfe8;
+  background-image:
+    radial-gradient(ellipse at 15% 15%, rgba(255,255,255,.95), transparent 34%),
+    radial-gradient(ellipse at 82% 20%, rgba(224,166,191,.42), transparent 32%),
+    radial-gradient(ellipse at 70% 82%, rgba(255,255,255,.72), transparent 31%),
+    linear-gradient(132deg, #fff8fa 2%, #f3d6e1 29%, #fff9fb 48%, #e9bfd0 68%, #fff8fa 86%);
+  background-size: 150% 150%;
+  animation: silk-shift 18s ease-in-out infinite alternate;
+}
+@keyframes silk-shift {
+  from { background-position: 0% 40%; }
+  to { background-position: 100% 60%; }
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 76px 0;
+}
+.hero::before, .hero::after {
+  position: absolute;
+  width: 65%;
+  height: 130px;
+  left: 18%;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), rgba(183,107,143,.14), transparent);
+  filter: blur(15px);
+  transform: rotate(-13deg);
+  content: "";
+  pointer-events: none;
+}
+.hero::before { top: 10%; }
+.hero::after { bottom: 8%; transform: rotate(11deg); }
+.hero-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 42px;
+}
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--pink-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+h1 {
+  max-width: 680px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(42px, 5.3vw, 66px);
+  line-height: 1.07;
+  letter-spacing: -.04em;
+}
+.hero-copy > p { max-width: 620px; margin: 20px 0 26px; color: #685568; font-size: 17px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Decorative perfume bottle and label, drawn without external images */
+.stage {
+  position: relative;
+  min-height: 430px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.76);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 50% 77%, rgba(167,96,128,.16), transparent 46%),
+    linear-gradient(145deg, rgba(255,255,255,.67), rgba(255,239,245,.52));
+  box-shadow: 0 22px 60px rgba(107,54,79,.12);
+}
+.stage::before {
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.64);
+  filter: blur(14px);
+  content: "";
+}
+.bottle {
+  position: relative;
+  z-index: 1;
+  width: 195px;
+  height: 255px;
+  border: 2px solid rgba(255,255,255,.88);
+  border-radius: 38px 38px 27px 27px;
+  background:
+    linear-gradient(100deg, rgba(255,255,255,.35), rgba(255,255,255,.82) 43%, rgba(235,191,207,.45)),
+    linear-gradient(180deg, rgba(255,255,255,.45), rgba(230,179,198,.35));
+  box-shadow:
+    inset 12px 0 18px rgba(255,255,255,.82),
+    inset -12px 0 22px rgba(185,115,148,.12),
+    0 30px 50px rgba(104,57,78,.22);
+  animation: bottle-float 5s ease-in-out infinite;
+}
+.bottle::before {
+  position: absolute;
+  top: -46px;
+  left: 58px;
+  width: 75px;
+  height: 46px;
+  border: 2px solid rgba(255,255,255,.8);
+  border-radius: 10px 10px 3px 3px;
+  background: linear-gradient(90deg, #b98c57, #f3dfb7 45%, #ba915e);
+  box-shadow: 0 7px 12px rgba(107,62,74,.15);
+  content: "";
+}
+.bottle::after {
+  position: absolute;
+  right: 14px;
+  bottom: 0;
+  left: 14px;
+  height: 35%;
+  border-radius: 0 0 18px 18px;
+  background: linear-gradient(180deg, rgba(238,199,165,.12), rgba(223,175,138,.4));
+  content: "";
+}
+.label {
+  position: absolute;
+  z-index: 2;
+  top: 95px;
+  left: 24px;
+  width: 143px;
+  min-height: 77px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  border: 2px solid #e4c27d;
+  border-radius: 5px;
+  color: #f9e8c2;
+  background: linear-gradient(140deg, #4a2b3c, #7a405a 60%, #392335);
+  box-shadow: 0 8px 16px rgba(67,39,52,.22), inset 0 0 0 3px rgba(241,213,159,.13);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  letter-spacing: .16em;
+  text-align: center;
+  animation: label-apply 5s ease-in-out infinite;
+}
+.label small { display: block; margin-top: 4px; font-family: Arial, sans-serif; font-size: 8px; letter-spacing: .2em; }
+.sparkle { position: absolute; z-index: 2; color: #fff; text-shadow: 0 1px 12px #fff; animation: twinkle 2.6s ease-in-out infinite; }
+.s1 { top: 18%; left: 18%; font-size: 25px; }
+.s2 { top: 25%; right: 19%; font-size: 20px; animation-delay: .8s; }
+.s3 { bottom: 20%; left: 25%; font-size: 19px; animation-delay: 1.5s; }
+.stage-caption {
+  position: absolute;
+  right: 18px;
+  bottom: 15px;
+  left: 18px;
+  z-index: 3;
+  color: #785a6b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-align: center;
+}
+@keyframes bottle-float {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+@keyframes label-apply {
+  0%, 12% { opacity: .55; transform: translateY(-18px) rotate(-7deg) scale(.96); }
+  32%, 75%, 100% { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
+  82% { transform: translateY(1px) scale(1.02); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: .45; transform: scale(.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+section { padding: 76px 0; }
+.section-heading { max-width: 760px; margin: 0 auto 36px; text-align: center; }
+.section-heading h2 {
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 4vw, 43px);
+  line-height: 1.2;
+}
+.section-heading p { margin: 0; color: var(--muted); }
+.about-copy { max-width: 940px; margin: auto; color: #5c4b5e; }
+.about-copy p { margin: 0 0 15px; }
+
+.soft-bg {
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(255,255,255,.8), transparent 38%),
+    linear-gradient(145deg, #fff9fb, #f8e8ef 55%, #fff9fb);
+}
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 28px rgba(117,71,92,.05);
+}
+.card h3 { margin: 0 0 8px; font-size: 18px; }
+.card p { margin: 0; color: var(--muted); font-size: 14px; }
+.number { margin-bottom: 10px; color: var(--pink-dark); font-size: 12px; font-weight: 800; letter-spacing: .12em; }
+
+.product-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 11px; max-width: 940px; margin: auto; }
+.product-item {
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: rgba(255,255,255,.8);
+  font-weight: 650;
+}
+.product-item::before { margin-right: 10px; color: var(--pink); content: "✦"; }
+
+.materials { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 24px; }
+.materials span {
+  padding: 8px 16px;
+  border: 1px solid rgba(189,100,137,.25);
+  border-radius: 999px;
+  color: var(--pink-dark);
+  background: rgba(255,255,255,.78);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contact {
+  color: #fff9fc;
+  background:
+    radial-gradient(ellipse at 80% 15%, rgba(255,255,255,.22), transparent 34%),
+    linear-gradient(130deg, #6d405f, #a8587b 58%, #c87d9b);
+}
+.contact .section-heading p { color: #f6e5ed; }
+.contact .eyebrow { color: #ffe7f0; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.contact-card { padding: 21px; border: 1px solid rgba(255,255,255,.23); border-radius: 12px; background: rgba(255,255,255,.1); }
+.contact-card h3 { margin: 0 0 6px; color: #ffe7f0; font-size: 14px; }
+.contact-card p { margin: 0; overflow-wrap: anywhere; }
+.contact-card a { text-decoration: underline; text-underline-offset: 3px; }
+
+footer { padding: 22px 0; color: var(--muted); background: #fffafa; font-size: 13px; }
+.footer-row { display: flex; justify-content: space-between; gap: 16px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+@media (max-width: 800px) {
+  .nav-links { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .stage { min-height: 380px; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .container { width: min(100% - 28px, 1160px); }
+  .hero { padding: 58px 0; }
+  .stage { min-height: 340px; }
+  .grid-3, .product-list, .contact-grid { grid-template-columns: 1fr; }
+  .footer-row { flex-direction: column; }
+  section { padding: 60px 0; }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home"><span class="brand-mark">MT</span><span>MingTu Nameplate</span></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#materials">Materials</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="button" href="#contact">Contact Us</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero silk" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Custom Metal Nameplate Solutions</div>
+          <h1>Beautiful Details. Made Just for Your Brand.</h1>
+          <p>
+            MingTu Nameplate creates custom metal nameplates, perfume labels,
+            tags, badges, and accessories. Choose your material, share your
+            design, and let us help bring your idea to life.
+          </p>
+          <div class="actions">
+            <a class="button" href="#contact">Request a Quote</a>
+            <a class="button light" href="#products">Explore Products</a>
+          </div>
+        </div>
+    <div class="stage" role="img" aria-label="Decorative animation of a metal perfume label settling onto a glass bottle">
+      <span class="sparkle s1">✦</span>
+      <span class="sparkle s2">✧</span>
+      <span class="sparkle s3">✦</span>
+      <div class="bottle">
+        <div class="label">MINGTU<small>METAL NAMEPLATE</small></div>
+      </div>
+      <div class="stage-caption">A custom metal label, made for your product</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Company Profile</div>
+      <h2>Your Custom Metal Nameplate Partner</h2>
+    </div>
+    <div class="about-copy">
+      <p>
+        MingTu Nameplate (Foshan) Technology Co., Ltd. is a professional
+        manufacturer specializing in the research, production, and
+        customization of metal nameplates. With years of industry
+        experience, our company is located in Hegui Industrial Park,
+        Heshun, Lishui Town, Nanhai District, Foshan City, Guangdong, China.
+      </p>
+      <p>
+        We operate standardized production workshops and a complete
+        production line, with equipment including a 110-ton stamping press,
+        automatic punching machines, a tunnel oven, printing presses, a UV
+        curing machine, and precision screen-printing equipment. We provide
+        multi-process manufacturing using aluminum, zinc alloy, stainless
+        steel, nickel, and other metal materials.
+      </p>
+      <p>
+        Our products serve fragrance and cosmetics, electronic devices and
+        accessories, cultural and creative gifts, and other industries. We
+        work with customers to develop custom metal label solutions for
+        their products and brands.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="soft-bg" id="materials">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Materials</div>
+      <h2>Choose the Metal for Your Design</h2>
+      <p>We offer custom production using a range of metal materials.</p>
+      <div class="materials">
+        <span>Aluminum</span>
+        <span>Zinc Alloy</span>
+        <span>Stainless Steel</span>
+        <span>Nickel</span>
+        <span>Other Metals</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Core Products</div>
+      <h2>Custom Labels, Nameplates &amp; Accessories</h2>
+      <p>Custom-made for your product, packaging, or brand.</p>
+    </div>
+    <div class="product-list">
+      <div class="product-item">Metal labels and nameplates</div>
+      <div class="product-item">Perfume bottle labels</div>
+      <div class="product-item">Perfume box emblems</div>
+      <div class="product-item">Printed embossed and debossed labels</div>
+      <div class="product-item">Zinc alloy hang tags</div>
+      <div class="product-item">Metal badges and fridge magnets</div>
+      <div class="product-item">Stainless steel and brass etched labels</div>
+      <div class="product-item">Nickel labels and laser labels</div>
+      <div class="product-item">Metal labels for electronics</div>
+      <div class="product-item">Custom metal gifts and accessories</div>
+    </div>
+  </div>
+</section>
+
+<section class="soft-bg" id="advantages">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Our Advantages</div>
+      <h2>Thoughtful Customization, Careful Production</h2>
+      <p>
+        Product testing options described in the company profile include
+        fragrance compatibility, alcohol resistance, temperature cycling,
+        cross-hatch adhesion, peel strength, and abrasion resistance tests.
+      </p>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <div class="number">01</div>
+        <h3>Made to Your Requirements</h3>
+        <p>Choose a metal material and share your design and product requirements.</p>
+      </article>
+      <article class="card">
+        <div class="number">02</div>
+        <h3>Multiple Production Processes</h3>
+        <p>Production equipment and processes support custom nameplate manufacturing.</p>
+      </article>
+      <article class="card">
+        <div class="number">03</div>
+        <h3>Product Testing Options</h3>
+        <p>Testing options include adhesion, peel strength, and abrasion resistance.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Contact Us</div>
+      <h2>Let’s Create Something Made for You</h2>
+      <p>Contact Kate to discuss your materials, design, and customization requirements.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card"><h3>Contact Person</h3><p>Kate</p></div>
+      <div class="contact-card"><h3>WhatsApp</h3><p><a href="https://wa.me/8619022443132">+86 19022443132</a></p></div>
+      <div class="contact-card"><h3>WeChat</h3><p>19022443132</p></div>
+      <div class="contact-card">
+        <h3>Address</h3>
+        <p>Building 3, No. 8 Hegui Middle Road, Hegui Industrial Park, Heshun, Lishui Town, Nanhai District, Foshan City, Guangdong, China</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <footer>
+    <div class="container footer-row">
+      <span>© <span id="year"></span> MingTu Nameplate (Foshan) Technology Co., Ltd.</span>
+      <span>Custom Metal Nameplates &amp; Labels</span>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
